@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
     reference.child("users").child(currentUserId).addValueEventListener(new ValueEventListener() {
       @Override
       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-        if (dataSnapshot.child("uname").exists()) {
+        if (dataSnapshot.child("aname").exists()) {
 //          Toast.makeText(context, "Welcome", Toast.LENGTH_SHORT).show();
         } else {
           SendUserToSettingsActivity();

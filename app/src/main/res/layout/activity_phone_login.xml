@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginRegister.PhoneLoginActivity">
+
+    <TextView
+        android:id="@+id/tvActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login with\nYour phone number..."
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:layout_marginTop="110dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="@color/colorPrimary"/>
+
+    <EditText
+        android:id="@+id/etPhoneInput"
+        android:layout_below="@id/tvActivity"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:padding="8dp"
+        android:hint="e.g +6281234567xxxx"
+        android:layout_alignParentEnd="true"
+        android:drawableStart="@drawable/ic_phone_black_24dp"
+        android:textAlignment="center"
+        android:drawablePadding="-20dp"
+        android:background="@drawable/inputs"
+        android:textColor="@color/colorPrimary"/>
+
+    <EditText
+        android:id="@+id/etVerifyCode"
+        android:layout_below="@id/etPhoneInput"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:padding="8dp"
+        android:hint="Input OTP e.g 123456"
+        android:drawableStart="@drawable/ic_lock_black_24dp"
+        android:drawablePadding="-20dp"
+        android:textAlignment="center"
+        android:background="@drawable/inputs"
+        android:textColor="@color/colorPrimary"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/btRequestOtp"
+        android:layout_below="@id/etVerifyCode"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Request OTP"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textStyle="normal"
+        android:padding="5dp"
+        android:textColor="#fff"
+        android:background="@drawable/buttons"/>
+
+    <Button
+        android:id="@+id/btSendVerify"
+        android:layout_below="@id/btRequestOtp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Verify OTP"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textStyle="normal"
+        android:padding="5dp"
+        android:textColor="#fff"
+        android:background="@drawable/buttons"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/tvToLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:text="Or\nLogin with email"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textColor="@android:color/darker_gray"/>
+
+</RelativeLayout>

@@ -116,6 +116,8 @@ public class GroupChatActivity extends AppCompatActivity {
       public void onClick(View v) {
         saveMessageInfoToDatabase();
         etMessageInput.setText("");
+        scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+
       }
     });
   }
@@ -127,7 +129,7 @@ public class GroupChatActivity extends AppCompatActivity {
       @Override
       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
         if (dataSnapshot.exists()) {
-          currentUsername = dataSnapshot.child("uname").getValue().toString();
+          currentUsername = dataSnapshot.child("aname").getValue().toString();
         }
       }
 
@@ -160,10 +162,10 @@ public class GroupChatActivity extends AppCompatActivity {
       groupMessageKeyRef = refGroupName.child(messageKey);
 
       HashMap<String, Object> messageInfoMap = new HashMap<>();
-        messageInfoMap.put("uname", currentUsername);
-        messageInfoMap.put("message", message);
-        messageInfoMap.put("date", currentDate);
-        messageInfoMap.put("time", currentTime);
+        messageInfoMap.put("aname", currentUsername);
+        messageInfoMap.put("bmessage", message);
+        messageInfoMap.put("cdate", currentDate);
+        messageInfoMap.put("dtime", currentTime);
       groupMessageKeyRef.updateChildren(messageInfoMap);
 
     }
@@ -173,12 +175,15 @@ public class GroupChatActivity extends AppCompatActivity {
     Iterator iterator = dataSnapshot.getChildren().iterator();
 
     while (iterator.hasNext()) {
-      String chatUname = (String) ((DataSnapshot)iterator.next()).getValue();
+      String chatUaname = (String) ((DataSnapshot)iterator.next()).getValue();
       String chatMessage = (String) ((DataSnapshot)iterator.next()).getValue();
       String chatDate = (String) ((DataSnapshot)iterator.next()).getValue();
       String chatTime = (String) ((DataSnapshot)iterator.next()).getValue();
 
-      displayTextMessage.append(chatUname + " :\n" + chatMessage + "\n" + chatDate + "    " + chatTime + "\n\n\n");
+      displayTextMessage.append(chatUaname + " :\n" + chatMessage + "\n" + chatDate + "    " + chatTime + "\n\n");
+
+      scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+
     }
   }
 }

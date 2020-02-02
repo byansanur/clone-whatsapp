@@ -69,6 +69,15 @@ public class LoginActivity extends AppCompatActivity {
         userLogin();
       }
     });
+    btLoginPhone.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent otpLogin = new Intent(context, PhoneLoginActivity.class);
+        otpLogin.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(otpLogin);
+        finish();
+      }
+    });
   }
 
   private void userLogin() {
