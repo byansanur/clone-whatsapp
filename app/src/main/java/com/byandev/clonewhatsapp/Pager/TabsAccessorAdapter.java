@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.byandev.clonewhatsapp.Fragment.ChatFragment;
 import com.byandev.clonewhatsapp.Fragment.ContactsFragment;
+import com.byandev.clonewhatsapp.Fragment.FragmentRequest;
 import com.byandev.clonewhatsapp.Fragment.GroupFragment;
 
 public class TabsAccessorAdapter extends FragmentPagerAdapter {
@@ -21,15 +22,18 @@ public class TabsAccessorAdapter extends FragmentPagerAdapter {
   public Fragment getItem(int position) {
 
     switch (position) {
-      case  0:
+      case 0:
         ChatFragment chatFragment = new ChatFragment();
         return chatFragment;
-      case  1:
+      case 1:
         GroupFragment groupFragment = new GroupFragment();
         return groupFragment;
-      case  2:
+      case 2:
         ContactsFragment contactsFragment = new ContactsFragment();
         return contactsFragment;
+      case 3:
+        FragmentRequest request = new FragmentRequest();
+        return  request;
 
         default:
           return null;
@@ -38,7 +42,7 @@ public class TabsAccessorAdapter extends FragmentPagerAdapter {
 
   @Override
   public int getCount() {
-    return 3;
+    return 4;
   }
 
   @Nullable
@@ -51,6 +55,8 @@ public class TabsAccessorAdapter extends FragmentPagerAdapter {
         return "Groups";
       case  2:
         return "Contacts";
+      case  3:
+        return "Requests";
 
       default:
         return null;

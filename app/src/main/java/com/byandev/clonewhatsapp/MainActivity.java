@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.byandev.clonewhatsapp.Find.FindFriendsActivity;
 import com.byandev.clonewhatsapp.LoginRegister.LoginActivity;
 import com.byandev.clonewhatsapp.MenusAct.SettingsActivity;
 import com.byandev.clonewhatsapp.Pager.TabsAccessorAdapter;
@@ -110,6 +111,11 @@ public class MainActivity extends AppCompatActivity {
     finish();
   }
 
+    private void SendUserToFiendFriendsActivity() {
+        Intent i = new Intent(context, FindFriendsActivity.class);
+        startActivity(i);
+    }
+
   private void requestNewGroup() {
     AlertDialog.Builder ad = new AlertDialog.Builder(context, R.style.AlertDialog);
     ad.setTitle("Enter Group Name :");
@@ -167,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
       SendUserToSettingsActivity();
     }
     if (item.getItemId() == R.id.findFriends) {
-
+        SendUserToFiendFriendsActivity();
     }
     if (item.getItemId() == R.id.createGrpup) {
       requestNewGroup();
