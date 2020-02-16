@@ -106,9 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
   private void SendUserToSettingsActivity() {
     Intent i = new Intent(context, SettingsActivity.class);
-    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
     startActivity(i);
-    finish();
   }
 
     private void SendUserToFiendFriendsActivity() {

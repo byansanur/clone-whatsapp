@@ -86,7 +86,10 @@ public class SettingsActivity extends AppCompatActivity {
     userImage = findViewById(R.id.imgeProfile);
     ll1 = findViewById(R.id.ll1);
     toolbar = findViewById(R.id.toolbar);
-    toolbar.setTitle("Profile");
+    setSupportActionBar(toolbar);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setDisplayShowCustomEnabled(true);
+    getSupportActionBar().setTitle("Profile");
   }
 
   private void listener() {
@@ -243,9 +246,4 @@ public class SettingsActivity extends AppCompatActivity {
     finish();
   }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        sendUserToMainActivity();
-    }
 }
