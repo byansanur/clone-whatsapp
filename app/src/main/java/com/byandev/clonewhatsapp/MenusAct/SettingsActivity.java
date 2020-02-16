@@ -70,7 +70,8 @@ public class SettingsActivity extends AppCompatActivity {
 
     initialize();
 
-    ll1.setVisibility(View.GONE);
+//    ll1.setVisibility(View.GONE);
+      userImage.setVisibility(View.GONE);
 
     listener();
 
@@ -172,12 +173,12 @@ public class SettingsActivity extends AppCompatActivity {
     } else if (TextUtils.isEmpty(status)) {
       Toast.makeText(context, "Please write your status...", Toast.LENGTH_SHORT).show();
     } else {
-      HashMap<String, String> profileMap = new HashMap<>();
+      HashMap<String, Object> profileMap = new HashMap<>();
         profileMap.put("uid", currentuserID);
         profileMap.put("aname", userName );
         profileMap.put("status", status);
 //        profileMap.put("image", userImage);
-      reference.child("users").child(currentuserID).setValue(profileMap)
+      reference.child("users").child(currentuserID).updateChildren(profileMap)
           .addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -242,5 +243,9 @@ public class SettingsActivity extends AppCompatActivity {
     finish();
   }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        sendUserToMainActivity();
+    }
 }

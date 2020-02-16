@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/white">
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="10dp"
+        app:contentPadding="10dp"
+        app:cardCornerRadius="5dp"
+        android:layout_margin="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgUsers"
@@ -70,7 +80,7 @@
                     android:textSize="12sp"
                     android:textAllCaps="false"
                     android:layout_marginEnd="16dp"
-                    android:background="@drawable/cancel"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:visibility="invisible"/>
 
                 <Button
@@ -82,17 +92,17 @@
                     android:textSize="12sp"
                     android:textAllCaps="false"
                     android:layout_marginStart="16dp"
-                    android:background="@drawable/accept"
-                    android:visibility="invisible"/>
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:visibility="visible"/>
 
 
             </LinearLayout>
 
         </LinearLayout>
 
+        </LinearLayout>
 
 
-
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
