@@ -32,6 +32,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
 
   private Toolbar toolbar;
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
     toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
-    getSupportActionBar().setTitle("WhatsApp");
+    Objects.requireNonNull(getSupportActionBar()).setTitle("WhatsApp");
 
     auth = FirebaseAuth.getInstance();
     currentUser = auth.getCurrentUser();
@@ -79,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private void VerifyUserExistence() {
-    String currentUserId = auth.getCurrentUser().getUid();
+    String currentUserId = Objects.requireNonNull(auth.getCurrentUser()).getUid();
     reference.child("users").child(currentUserId).addValueEventListener(new ValueEventListener() {
       @Override
       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

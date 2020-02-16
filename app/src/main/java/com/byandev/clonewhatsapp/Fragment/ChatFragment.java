@@ -1,6 +1,7 @@
 package com.byandev.clonewhatsapp.Fragment;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,6 +29,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -61,7 +64,7 @@ public class ChatFragment extends Fragment {
     context = getContext();
 
     auth = FirebaseAuth.getInstance();
-    currentUserId = auth.getCurrentUser().getUid();
+    currentUserId = Objects.requireNonNull(auth.getCurrentUser()).getUid();
     chatRef = FirebaseDatabase.getInstance().getReference().child("contacts").child(currentUserId);
     userRef = FirebaseDatabase.getInstance().getReference().child("users");
 
@@ -92,21 +95,23 @@ public class ChatFragment extends Fragment {
                     final String usersIds = getRef(position).getKey();
                     final String[] retImage = {"default_image"};
 
+                    assert usersIds != null;
                     userRef.child(usersIds).addValueEventListener(new ValueEventListener() {
+                        @SuppressLint("SetTextI18n")
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                             if (dataSnapshot.exists()) {
 
                                 if (dataSnapshot.hasChild("image")) {
-                                    retImage[0] = dataSnapshot.child("image").getValue().toString();
+                                    retImage[0] = Objects.requireNonNull(dataSnapshot.child("image").getValue()).toString();
                                     Picasso.get()
                                         .load(retImage[0])
                                         .into(holder.profileImage);
                                 }
 
-                                final String usn = dataSnapshot.child("aname").getValue().toString();
-                                final String uss = dataSnapshot.child("status").getValue().toString();
+                                final String usn = Objects.requireNonNull(dataSnapshot.child("aname").getValue()).toString();
+                                final String uss = Objects.requireNonNull(dataSnapshot.child("status").getValue()).toString();
 
                                 holder.userName.setText(usn);
                                 holder.userStatus.setText("Last seen: " + "\n" + "Date: " + "Time:");

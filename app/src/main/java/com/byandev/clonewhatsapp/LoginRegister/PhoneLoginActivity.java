@@ -3,6 +3,7 @@ package com.byandev.clonewhatsapp.LoginRegister;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -28,6 +29,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class PhoneLoginActivity extends AppCompatActivity {
@@ -131,6 +133,7 @@ public class PhoneLoginActivity extends AppCompatActivity {
         etOtp.setVisibility(View.GONE);
 
       }
+      @SuppressLint("SetTextI18n")
       public void onCodeSent(@NonNull String verificationId,
                              @NonNull PhoneAuthProvider.ForceResendingToken token) {
 
@@ -161,7 +164,7 @@ public class PhoneLoginActivity extends AppCompatActivity {
               Toast.makeText(context, "Login successfully", Toast.LENGTH_SHORT).show();
               sendUserToMainActivity();
             } else {
-              String err = task.getException().toString();
+              String err = Objects.requireNonNull(task.getException()).toString();
               Toast.makeText(context, err, Toast.LENGTH_SHORT).show();
             }
           }

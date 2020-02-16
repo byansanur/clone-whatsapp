@@ -103,25 +103,11 @@ public class FragmentRequest extends Fragment {
                                             Log.d("userRef", String.valueOf(userRef.child(list_users_id)));
                                             if (dataSnapshot.hasChild("image")) {
 
-//                                                final String reqUname = dataSnapshot.child("aname").getValue().toString();
                                                 final String reqUimage = dataSnapshot.child("image").getValue().toString();
-//                                                final String reqUstatus = dataSnapshot.child("status").getValue().toString();
-
-//                                                holder.userName.setText(reqUname);
                                                 Picasso.get()
                                                     .load(reqUimage)
                                                     .into(holder.imageView);
-//                                                holder.userStatus.setText(reqUstatus);
-//                                                Log.d("liat", reqUname);
                                             }
-//                                            } else {
-//
-//                                                final String reqUname = dataSnapshot.child("aname").getValue().toString();
-//                                                final String reqUstatus = dataSnapshot.child("status").getValue().toString();
-//
-//                                                holder.userName.setText(reqUname);
-//                                                holder.userStatus.setText(reqUstatus);
-//                                            }
                                             final String reqUname = dataSnapshot.child("aname").getValue().toString();
                                             final String reqUstatus = dataSnapshot.child("status").getValue().toString();
 

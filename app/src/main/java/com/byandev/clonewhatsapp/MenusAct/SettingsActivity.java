@@ -87,7 +87,7 @@ public class SettingsActivity extends AppCompatActivity {
     ll1 = findViewById(R.id.ll1);
     toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setDisplayShowCustomEnabled(true);
     getSupportActionBar().setTitle("Profile");
   }
@@ -151,7 +151,7 @@ public class SettingsActivity extends AppCompatActivity {
                         Toast.makeText(SettingsActivity.this, "Image save database successfully", Toast.LENGTH_SHORT).show();
                       } else {
                         loading.dismiss();
-                        String err = task.getException().toString();
+                        String err = Objects.requireNonNull(task.getException()).toString();
                         Toast.makeText(SettingsActivity.this, err, Toast.LENGTH_SHORT).show();
                       }
                     }

@@ -54,7 +54,7 @@ public class GroupChatActivity extends AppCompatActivity {
     setContentView(R.layout.activity_group_chat);
 
     context = this;
-    currentGroupName = getIntent().getExtras().get("groupName").toString();
+    currentGroupName = Objects.requireNonNull(getIntent().getExtras().get("groupName")).toString();
 
     toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
@@ -69,7 +69,7 @@ public class GroupChatActivity extends AppCompatActivity {
     scrollView = findViewById(R.id.pull);
 
     auth = FirebaseAuth.getInstance();
-    currentUserId = auth.getCurrentUser().getUid();
+    currentUserId = Objects.requireNonNull(auth.getCurrentUser()).getUid();
     refUser = FirebaseDatabase.getInstance().getReference().child("users");
     refGroupName = FirebaseDatabase.getInstance().getReference().child("groups").child(currentGroupName);
 
@@ -136,7 +136,7 @@ public class GroupChatActivity extends AppCompatActivity {
       @Override
       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
         if (dataSnapshot.exists()) {
-          currentUsername = dataSnapshot.child("aname").getValue().toString();
+          currentUsername = Objects.requireNonNull(dataSnapshot.child("aname").getValue()).toString();
         }
       }
 

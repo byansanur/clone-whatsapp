@@ -25,6 +25,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
 
+import java.util.Objects;
+
 public class LoginActivity extends AppCompatActivity {
 
 //  private FirebaseUser currentUser;
@@ -105,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
              if (task.isSuccessful()) {
 
-                 String currentUserId = auth.getCurrentUser().getUid();
+                 String currentUserId = Objects.requireNonNull(auth.getCurrentUser()).getUid();
                  String deviceToken = FirebaseInstanceId.getInstance().getToken();
 
                  userRef.child(currentUserId).child("device_token")
@@ -121,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                  });
              } else {
                loading.dismiss();
-               String message = task.getException().toString();
+               String message = Objects.requireNonNull(task.getException()).toString();
                Toast.makeText(context, "Error : "+message, Toast.LENGTH_SHORT).show();
              }
             }

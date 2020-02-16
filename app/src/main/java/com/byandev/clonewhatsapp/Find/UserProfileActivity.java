@@ -23,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -51,8 +52,8 @@ public class UserProfileActivity extends AppCompatActivity {
         contactRef = FirebaseDatabase.getInstance().getReference().child("contacts");
         notifRef = FirebaseDatabase.getInstance().getReference().child("notification");
 
-        receiverUserID = getIntent().getExtras().get("visit_user_id").toString();
-        sendertUserId = auth.getCurrentUser().getUid();
+        receiverUserID = Objects.requireNonNull(getIntent().getExtras().get("visit_user_id")).toString();
+        sendertUserId = Objects.requireNonNull(auth.getCurrentUser()).getUid();
 
         profileUser = findViewById(R.id.imgProfile);
         tvUsername = findViewById(R.id.tvUsername);
@@ -69,9 +70,9 @@ public class UserProfileActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("image"))) {
-                    String userImage = dataSnapshot.child("image").getValue().toString();
-                    String userName = dataSnapshot.child("aname").getValue().toString();
-                    String userStatus = dataSnapshot.child("status").getValue().toString();
+                    String userImage = Objects.requireNonNull(dataSnapshot.child("image").getValue()).toString();
+                    String userName = Objects.requireNonNull(dataSnapshot.child("aname").getValue()).toString();
+                    String userStatus = Objects.requireNonNull(dataSnapshot.child("status").getValue()).toString();
 
                     Picasso.get()
                         .load(userImage)
@@ -85,8 +86,8 @@ public class UserProfileActivity extends AppCompatActivity {
 
                 } else {
 
-                    String userName = dataSnapshot.child("aname").getValue().toString();
-                    String userStatus = dataSnapshot.child("status").getValue().toString();
+                    String userName = Objects.requireNonNull(dataSnapshot.child("aname").getValue()).toString();
+                    String userStatus = Objects.requireNonNull(dataSnapshot.child("status").getValue()).toString();
 
                     tvUsername.setText(userName);
                     tvUserstatus.setText(userStatus);

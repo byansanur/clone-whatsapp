@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -35,6 +36,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -68,12 +70,12 @@ public class ChatActivity extends AppCompatActivity {
         context = this;
 
         auth = FirebaseAuth.getInstance();
-        messageSenderId = auth.getCurrentUser().getUid();
+        messageSenderId = Objects.requireNonNull(auth.getCurrentUser()).getUid();
         rootRef = FirebaseDatabase.getInstance().getReference();
 
-        messageReceiverID = getIntent().getExtras().get("visit_user_id").toString();
-        messageReceiverName = getIntent().getExtras().get("visit_user_name").toString();
-        messageReceiverImage = getIntent().getExtras().get("visit_image").toString();
+        messageReceiverID = Objects.requireNonNull(Objects.requireNonNull(getIntent().getExtras()).get("visit_user_id")).toString();
+        messageReceiverName = Objects.requireNonNull(getIntent().getExtras().get("visit_user_name")).toString();
+        messageReceiverImage = Objects.requireNonNull(getIntent().getExtras().get("visit_image")).toString();
 
         initializeController();
 
@@ -93,10 +95,13 @@ public class ChatActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowCustomEnabled(true);
 
-        LayoutInflater layoutInflater = (LayoutInflater) this.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater layoutInflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        assert layoutInflater != null;
+        @SuppressLint("InflateParams")
         View view = layoutInflater.inflate(R.layout.custom_chat_bar, null);
         actionBar.setCustomView(view);
         circleImageView = findViewById(R.id.custom_profile_image);
@@ -176,9 +181,9 @@ public class ChatActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task task) {
                     if (task.isSuccessful()) {
-                        Toast.makeText(context, "Message sent successfully", Toast.LENGTH_SHORT).show();
+
                     } else {
-                        Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
+
                     }
                     etInputMessage.setText("");
                 }

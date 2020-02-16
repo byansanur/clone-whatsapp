@@ -22,6 +22,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
+import java.util.Objects;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class FindFriendsActivity extends AppCompatActivity {
@@ -43,7 +45,7 @@ public class FindFriendsActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("FInd friends");
         getSupportActionBar().setSubtitle("For chat one to one");
@@ -83,8 +85,7 @@ public class FindFriendsActivity extends AppCompatActivity {
                 @Override
                 public FindFriendsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                     View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_users, parent, false);
-                    FindFriendsViewHolder viewHolder = new FindFriendsViewHolder(view);
-                    return viewHolder;
+                    return new FindFriendsViewHolder(view);
                 }
             };
 
