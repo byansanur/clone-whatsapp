@@ -21,6 +21,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -31,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
   private Context context;
   private FirebaseAuth auth;
   private ProgressDialog loading;
+  private DatabaseReference userRef;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
 
     context = this;
     auth = FirebaseAuth.getInstance();
+    userRef = FirebaseDatabase.getInstance().getReference().child("users");
 //    currentUser = auth.getCurrentUser();
 
     initializeFields();
@@ -99,9 +104,21 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
              if (task.isSuccessful()) {
-               loading.dismiss();
-               Toast.makeText(context, "Logged in successfully", Toast.LENGTH_SHORT).show();
-               sendUserToMainActivity();
+
+                 String currentUserId = auth.getCurrentUser().getUid();
+                 String deviceToken = FirebaseInstanceId.getInstance().getToken();
+
+                 userRef.child(currentUserId).child("device_token")
+                     .setValue(deviceToken).addOnCompleteListener(new OnCompleteListener<Void>() {
+                     @Override
+                     public void onComplete(@NonNull Task<Void> task) {
+                         if (task.isSuccessful()) {
+                             loading.dismiss();
+                             Toast.makeText(context, "Logged in successfully", Toast.LENGTH_SHORT).show();
+                             sendUserToMainActivity();
+                         }
+                     }
+                 });
              } else {
                loading.dismiss();
                String message = task.getException().toString();
@@ -118,13 +135,6 @@ public class LoginActivity extends AppCompatActivity {
     finish();
   }
 
-//  @Override
-//  protected void onStart() {
-//    super.onStart();
-//    if (currentUser != null) {
-//      SendUserToMainActivity();
-//    }
-//  }
 
   private void sendUserToMainActivity() {
     Intent a = new Intent(context, MainActivity.class);

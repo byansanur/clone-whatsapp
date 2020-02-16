@@ -22,6 +22,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserProfileActivity extends AppCompatActivity {
@@ -33,7 +35,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private FloatingActionButton fabSend;
     private Button btCancleChat;
 
-    private DatabaseReference reference, chatRequest, contactRef;
+    private DatabaseReference reference, chatRequest, contactRef, notifRef;
 
     private FirebaseAuth auth;
 
@@ -47,6 +49,7 @@ public class UserProfileActivity extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference().child("users");
         chatRequest = FirebaseDatabase.getInstance().getReference().child("chat request");
         contactRef = FirebaseDatabase.getInstance().getReference().child("contacts");
+        notifRef = FirebaseDatabase.getInstance().getReference().child("notification");
 
         receiverUserID = getIntent().getExtras().get("visit_user_id").toString();
         sendertUserId = auth.getCurrentUser().getUid();
@@ -294,9 +297,22 @@ public class UserProfileActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        fabSend.setEnabled(true);
-                                        currentState = "req_sent";
-                                        fabSend.setImageDrawable(getDrawable(R.drawable.ic_clear_white_24dp));
+
+                                        HashMap<String , String> chatNotifMap = new HashMap<>();
+                                        chatNotifMap.put("from", sendertUserId);
+                                        chatNotifMap.put("type", "request");
+                                        notifRef.child(receiverUserID).push()
+                                            .setValue(chatNotifMap)
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        fabSend.setEnabled(true);
+                                                        currentState = "req_sent";
+                                                        fabSend.setImageDrawable(getDrawable(R.drawable.ic_clear_white_24dp));
+                                                    }
+                                                }
+                                            });
                                     }
                                 }
                             });

@@ -2,10 +2,13 @@ package com.byandev.clonewhatsapp.Chat;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -15,6 +18,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.byandev.clonewhatsapp.MainActivity;
 import com.byandev.clonewhatsapp.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -54,6 +58,9 @@ public class GroupChatActivity extends AppCompatActivity {
 
     toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
+    ActionBar actionBar = getSupportActionBar();
+    actionBar.setDisplayHomeAsUpEnabled(true);
+    actionBar.setDisplayShowCustomEnabled(true);
     Objects.requireNonNull(getSupportActionBar()).setTitle(currentGroupName);
     fabSend = findViewById(R.id.fabSend);
     etMessageInput = findViewById(R.id.etInputMessageGroup);
@@ -149,10 +156,12 @@ public class GroupChatActivity extends AppCompatActivity {
       Toast.makeText(context, "Please write the message...", Toast.LENGTH_SHORT).show();
     } else  {
       Calendar calendar = Calendar.getInstance();
+      @SuppressLint("SimpleDateFormat")
       SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
       currentDate = dateFormat.format(calendar.getTime());
 
       Calendar time = Calendar.getInstance();
+      @SuppressLint("SimpleDateFormat")
       SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a");
       currentTime = timeFormat.format(time.getTime());
 
@@ -186,4 +195,12 @@ public class GroupChatActivity extends AppCompatActivity {
 
     }
   }
+
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//        Intent a = new Intent(context, MainActivity.class);
+//        startActivity(a);
+//        finish();
+//    }
 }

@@ -42,7 +42,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="username"
+                    android:text="@string/username"
                     android:textSize="18sp"
                     android:textStyle="bold"/>
 
@@ -59,7 +59,7 @@
                 android:id="@+id/tvUserStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="user status"
+                android:text="@string/user_status"
                 android:textSize="18sp"
                 android:textStyle="normal"/>
 
@@ -75,7 +75,7 @@
                     android:id="@+id/reqCancel"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
-                    android:text="Cancel"
+                    android:text="@string/cancel"
                     android:textColor="@color/colorPrimary"
                     android:textSize="12sp"
                     android:textAllCaps="false"
@@ -87,7 +87,7 @@
                     android:id="@+id/reqAccept"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
-                    android:text="Accept"
+                    android:text="@string/accept"
                     android:textColor="#fff"
                     android:textSize="12sp"
                     android:textAllCaps="false"

@@ -57,7 +57,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Name"
+                        android:text="@string/name"
                         android:textStyle="normal"
                         android:textSize="18sp"
                         android:textColor="#525252"/>
@@ -66,7 +66,7 @@
                         android:id="@+id/etUname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Username"
+                        android:hint="@string/username"
                         android:padding="16dp"
                         android:inputType="textMultiLine"
                         android:textColor="@color/colorPrimaryDark"
@@ -105,7 +105,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="About"
+                        android:text="@string/about"
                         android:textStyle="normal"
                         android:textSize="18sp"
                         android:textColor="#525252"/>
@@ -114,7 +114,7 @@
                         android:id="@+id/etStatus"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Status"
+                        android:hint="@string/status"
                         android:padding="16dp"
                         android:inputType="textMultiLine"
                         android:textColor="@color/colorPrimaryDark"
@@ -137,7 +137,7 @@
                 android:id="@+id/btnUpdateProfile"
                 android:layout_below="@id/ll2"
                 android:background="@drawable/buttons"
-                android:text="Update"
+                android:text="@string/update"
                 android:textColor="@android:color/white"
                 android:textAllCaps="false"
                 android:textSize="18sp"

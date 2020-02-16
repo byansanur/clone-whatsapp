@@ -1,7 +1,37 @@
 <resources>
-    <string name="app_name">CloneWhatsApp</string>
+    <string name="app_name">WhatsApp 2nd</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="blank">blank</string>
+    <string name="enter_message">Enter message</string>
+    <string name="password">****</string>
+    <string name="e_g_a_mail_com">e.g a@mail.com</string>
+    <string name="lets_start_chatting">Lets start chatting</string>
+    <string name="forget_password">Forget Password ?</string>
+    <string name="sign_in_with_phone_number">Sign in with Phone number</string>
+    <string name="create_a_nnew_account">Create a \nNew Account ?</string>
+    <string name="login_with_nyour_phone_number">Login with \nYour phone number…</string>
+    <string name="e_g_6281234567xxxx">e.g +6281234567xxxx</string>
+    <string name="input_otp_e_g_123456">Input OTP e.g 123456</string>
+    <string name="request_otp">Request OTP</string>
+    <string name="verify_otp">Verify OTP</string>
+    <string name="or_nlogin_with_email">Or \nLogin with email</string>
+    <string name="create_account">Create Account</string>
+    <string name="sign_up">Sign up</string>
+    <string name="have_a_acoount_nlogin_here">Have a Acoount ? \nLogin here</string>
+    <string name="name">Name</string>
+    <string name="username">Username</string>
+    <string name="about">About</string>
+    <string name="status">Status</string>
+    <string name="update">Update</string>
+    <string name="user_name">User name</string>
+    <string name="user_status">User status</string>
+    <string name="cancle_chat_request">Cancle chat request</string>
+    <string name="display_username">Display Username</string>
+    <string name="last_seen">Last Seen</string>
+    <string name="receiver_message_here">receiver message here</string>
+    <string name="sender_message">Sender message</string>
+    <string name="cancel">Cancel</string>
+    <string name="accept">Accept</string>
 </resources>

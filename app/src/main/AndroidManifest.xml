@@ -10,18 +10,21 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_clone_wa_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Find.UserProfileActivity"></activity>
+        <activity android:name=".Chat.ChatActivity"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".Find.UserProfileActivity" />
         <activity
             android:name=".Find.FindFriendsActivity"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".LoginRegister.PhoneLoginActivity" />
-        <activity android:name=".Chat.GroupChatActivity" />
+        <activity android:name=".Chat.GroupChatActivity"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".MenusAct.SettingsActivity"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".LoginRegister.RegisterActivity" />
         <activity android:name=".LoginRegister.LoginActivity" />
         <activity android:name=".MainActivity">

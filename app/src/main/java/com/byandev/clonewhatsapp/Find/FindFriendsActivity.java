@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.byandev.clonewhatsapp.Models.ModelsUsersContacts;
@@ -94,11 +95,16 @@ public class FindFriendsActivity extends AppCompatActivity {
     public static class FindFriendsViewHolder extends RecyclerView.ViewHolder {
         TextView userName, userStatus;
         CircleImageView profileImage;
+        Button cancle, accept;
         public FindFriendsViewHolder(@NonNull View itemView) {
             super(itemView);
             userName = itemView.findViewById(R.id.tvUsername);
             userStatus = itemView.findViewById(R.id.tvUserStatus);
             profileImage = itemView.findViewById(R.id.imgUsers);
+            cancle = itemView.findViewById(R.id.reqCancel);
+            cancle.setVisibility(View.GONE);
+            accept = itemView.findViewById(R.id.reqAccept);
+            accept.setVisibility(View.GONE);
         }
     }
 }
